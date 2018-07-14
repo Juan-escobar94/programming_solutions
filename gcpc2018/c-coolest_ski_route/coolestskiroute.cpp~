@@ -1,0 +1,39 @@
+#include <std/bitsc++.h>
+
+using namespace std;
+
+typedef pair<int, int> ii;
+typedef vector<ii> vii;
+
+
+int main(){
+  int n, m;
+
+  scanf("%d %d", &n, &m);
+  
+  int adjMat[1001][1001];
+  memset(adjMat, -1000, sizeof(adjMat));
+
+  
+  int s, t, c;
+  
+  while(m--){
+    scanf("%d %d %d", &s, &t, &c);
+    if (adj[s-1][t-1] < c)
+      adjMat[s-1][t-1] = c;
+  }
+  
+
+  theMax = 0;
+
+  for (int k = 0; k < n; k++)
+    for(int i = 0; i < n; i++)
+      for(int j = 0; i < n; j++){
+	adjMat[i][j] = max(adjMat[i][j], adjMat[i][k] + adjMat[k][j]);
+	theMax = max(theMax, adjMat[i][j]);
+      }
+
+  printf("%d\n", theMax);
+  
+  return 0;
+}
